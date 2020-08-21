@@ -11,23 +11,31 @@
 #include <stdio.h>
 #include <windows.h>
 // 输入要排序数字的数量
-#define numbers 10
+
+//定义结构体
+typedef struct student{
+    char name[20];
+    int score;
+}STU;
+
+
+#define numbers 5
 int main()
 {
-    int a[numbers];
+    STU a[numbers],t;
+    // int a[numbers];
     int N = numbers;
-    int tmp = 0,i,j,k;
+    int i,j;
     // 初始化
     for(i=0;i<N;i++)
     {
-        a[i] = 0;
+        a[i].score = 0;
     }
     // 赋值
     for(i=0;i<N;i++)
     {
-        printf("Please input %d numbers:",numbers);
-        scanf("%d",&k);
-        a[i] = k;
+        printf("Please input name and score for the %d:",i+1);
+        scanf("%s %d",a[i].name,&a[i].score);
     }
     //循环的趟数，N个数排序，只需进行N-1趟
     for(i=0;i<N-1;i++)
@@ -35,18 +43,18 @@ int main()
         // 循环一趟，交换
         for(j=0;j<N-1-i;j++)
         {
-            if(a[j]<a[j+1])
+            if(a[j].score<a[j+1].score)
             {
-                tmp = a[j];
+                t = a[j];
                 a[j] = a[j+1];
-                a[j+1] = tmp;
+                a[j+1] = t;
             }
         }
     }
     // 打印
     for(i=0;i<N;i++)
     {
-        printf("%d ",a[i]);
+        printf("%s %d\n",a[i].name,a[i].score);
     }
     system("pause");
     return 0;
